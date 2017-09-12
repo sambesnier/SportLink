@@ -34,63 +34,49 @@
 
 				<b:form>
 
-					<label>Pseudo</label>
-					<b:inputText placeholder="Nom d'utilisateur" id="username"
-						value="#{inscriptionController.pseudo}" ajax="true"
-						autocomplete="false" update="@(.message)">
-					</b:inputText>
-
 					<label>Email</label>
 					<b:inputText placeholder="Adresse mail"
-						value="#{inscriptionController.email}" ajax="true"
+						value="#{inscription.mail}" ajax="true"
 						autocomplete="false" update="@(.message)">
 					</b:inputText>
 
 					<label>Mot de passe</label>
 					<b:inputSecret placeholder="Mot de passe" id="password"
-						value="#{inscriptionController.password}" ajax="true"
+						value="#{inscription.password}" ajax="true"
 						autocomplete="false" update="@(.message)">
 					</b:inputSecret>
 					
 					<label>Confirmation</label>
 					<b:inputSecret placeholder="Confrmation de MDP" id="password2"
-						value="#{inscriptionController.password2}" ajax="true"
+						value="#{inscription.password2}" ajax="true"
 						autocomplete="false" update="@(.message)">
 					</b:inputSecret>
 
-					<b:selectOneMenu value="#{selectOneMenuBean.sexe}" required="true"
+					<b:selectOneMenu value="#{inscription.sexe}" required="true"
 						label="Sexe:">
 						<f:selectItem itemLabel=" - " itemValue="" />
-						<f:selectItem itemLabel="Homme" itemValue="1" />
-						<f:selectItem itemLabel="Femme" itemValue="2" />
+						<f:selectItem itemLabel="Homme" itemValue="Homme" />
+						<f:selectItem itemLabel="Femme" itemValue="Femme" />
 					</b:selectOneMenu>
 
-					<b:dateTimePicker mode="toggle-icon" showWeek="true"
-						value="#{dateBean.cdate}" required="true"
+					<b:dateTimePicker format="DD.MM.YYYY" mode="toggle-icon" showWeek="true" showTime="false"
+						value="#{inscription.date}" required="true"
 						label="Date de naissance:" />
 
-					<b:selectOneMenu value="#{selectOneMenuBean.region}"
-						required="true" label="Selectionnez votre région:">
-						<f:selectItem itemLabel=" - " itemValue="" />
-						<f:selectItem itemLabel="Auvergne-Rhône-Alpes" itemValue="1" />
-						<f:selectItem itemLabel="Bourgogne-Franche-Comté" itemValue="2" />
-						<f:selectItem itemLabel="Bretagne" itemValue="3" />
-						<f:selectItem itemLabel="Centre-Val de Loire" itemValue="4" />
-						<f:selectItem itemLabel="Corse" itemValue="5" />
-						<f:selectItem itemLabel="Grand Est" itemValue="6" />
-						<f:selectItem itemLabel="Hauts-de-France" itemValue="7" />
-						<f:selectItem itemLabel="Île-de-France" itemValue="8" />
-						<f:selectItem itemLabel="Normandie" itemValue="9" />
-						<f:selectItem itemLabel="Nouvelle-Aquitaine" itemValue="10" />
-						<f:selectItem itemLabel="Occitanie" itemValue="11" />
-						<f:selectItem itemLabel="Pays de la Loire" itemValue="12" />
-						<f:selectItem itemLabel="Provence-Alpes-Côte d'Azur"
-							itemValue="13" />
-
-					</b:selectOneMenu>
+					<label>Ville</label>
+					<b:inputText placeholder="Ville"
+						value="#{inscription.ville}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
+					
+					<label>Code postal</label>
+					<b:inputText placeholder="Code postal"
+						value="#{inscription.codePostal}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
 
 					<b:commandButton value="Inscription"
-						onclick="ajax:inscriptionController.subscribe()"
+						onclick="ajax:inscription.submit()"
 						class="btn-signup" />
 					<p>Déjà un compte? <a href="connexion.xhtml" class="btn-signin">Se connecter</a></p>
 				</b:form>

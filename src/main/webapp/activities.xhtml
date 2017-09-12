@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<title>SportLink</title>
@@ -14,195 +15,201 @@
 
 	<div class="header">
 		<div class="header-container">
-			<a href="index.xhtml"><img
-				src="#{resource['images/logo.png']}" /></a> <a
-				href="connexion.xhtml"><b:button class="loginBtn"
+			<a href="index.xhtml"><img src="#{resource['images/logo.png']}" /></a>
+			<a href="connexion.xhtml"><b:button class="loginBtn"
 					value="Se connecter"></b:button></a>
 		</div>
 	</div>
 
 	<div class="container">
-	
+
 		<div id="activities">
-			<h1 id="title">Trouvez une activité et faites vous de nouveaux amis</h1>
-			<hr/>
-			<p id="description">Voici la liste des dernières activités disponibles. Sélectionnez en une pour voir plus de détails et contacter l'organisateur.</p>
-			
-			
+			<h1 id="title">Trouvez une activité et faites vous de nouveaux
+				amis</h1>
+			<hr />
+			<p id="description">Voici la liste des dernières activités
+				disponibles. Sélectionnez en une pour voir plus de détails et
+				contacter l'organisateur.</p>
+
+
 			<div id="list-activities">
-			
-				<label>Date</label>
-				
-				<label>Titre</label>
-				
-				<label>Type</label>
-				
-				<a href="">
-					<div class="act-row">
+
+				<label>Date</label> <label>Titre</label> <label>Type</label>
 					
-						<div class="act-date">
-							15/09/2017 à 20:00
+				<ui:repeat value="#{activity.items}" var="item">
+					<a href="">
+						<div class="act-row">
+
+							<div class="act-date">#{item.date}</div>
+
+							<div class="act-title">#{item.title}</div>
+							
+							<div class="act-type">#{item.type}</div>
+							
 						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
-				<a href="">
-					<div class="act-row">
-					
-						<div class="act-date">
-							15/09/2017 à 20:00
-						</div>
-						
-						<div class="act-title">
-							Mini tournoi de Bubble foot
-						</div>
-						
-						<div class="act-type">
-							Fun
-						</div>
-						
-					</div>
-				</a>
-				
+					</a>
+				</ui:repeat>
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+				<!-- 				<a href=""> -->
+				<!-- 					<div class="act-row"> -->
+
+				<!-- 						<div class="act-date"> -->
+				<!-- 							15/09/2017 à 20:00 -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-title"> -->
+				<!-- 							Mini tournoi de Bubble foot -->
+				<!-- 						</div> -->
+
+				<!-- 						<div class="act-type"> -->
+				<!-- 							Fun -->
+				<!-- 						</div> -->
+
+				<!-- 					</div> -->
+				<!-- 				</a> -->
+
+<!-- 				<a href=""> -->
+<!-- 					<div class="act-row"> -->
+
+<!-- 						<div class="act-date">15/09/2017 à 20:00</div> -->
+
+<!-- 						<div class="act-title">Mini tournoi de Bubble foot</div> -->
+
+<!-- 						<div class="act-type">Fun</div> -->
+
+<!-- 					</div> -->
+<!-- 				</a> -->
+
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 
 </body>

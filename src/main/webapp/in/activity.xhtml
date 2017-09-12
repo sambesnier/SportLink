@@ -15,9 +15,11 @@
 	<div class="header">
 		<div class="header-container">
 			<a href="../index.xhtml"><img
-				src="#{resource['images/logo.png']}" /></a> <a
-				href="../deconnexion.xhtml"><b:button class="loginBtn"
-					value="Se déconnecter"></b:button></a>
+				src="#{resource['images/logo.png']}" /></a>
+			<b:form>
+				<b:commandButton onclick="ajax:logoutController.logout()" class="loginBtn"
+					value="Se déconnecter"></b:commandButton>
+			</b:form>
 		</div>
 	</div>
 
@@ -27,27 +29,26 @@
 
 			<h1 class="title">Mini tournoi de Bubble foot</h1>
 
-			<img src="#{resource['images/bubble-foot.png']}"/>	
-			
+			<img src="#{resource['images/bubble-foot.png']}" />
+
 			<div id="infos-activity">
-			
-				<label>Où ?</label>	
+
+				<label>Où ?</label>
 				<p>36 Rue de la Cousinerie, 59650 Villeneuve-d'Ascq</p>
-				
+
 				<label>Quand ?</label>
 				<p>Le 25/09/2017 à 20:00</p>
-				
+
 				<label>Type</label>
 				<p>Fun</p>
-				
+
 				<label>Description</label>
-				<p>Le Lorem Ipsum est simplement du faux texte employé 
-				dans la composition et la mise en page avant impression. 
-				Le Lorem Ipsum est le faux texte standard de l'imprimerie 
-				depuis les années 1500, quand un peintre anonyme assembla 
-				ensemble des morceaux de texte pour réaliser un livre 
-				spécimen de polices de texte.</p>
-				
+				<p>Le Lorem Ipsum est simplement du faux texte employé dans la
+					composition et la mise en page avant impression. Le Lorem Ipsum est
+					le faux texte standard de l'imprimerie depuis les années 1500,
+					quand un peintre anonyme assembla ensemble des morceaux de texte
+					pour réaliser un livre spécimen de polices de texte.</p>
+
 				<label>Participants</label>
 				<div id="participants-list">
 					<ul>
@@ -59,13 +60,13 @@
 						<li>Julien</li>
 						<li>Laurent</li>
 						<li>Dido</li>
-						
+
 					</ul>
 				</div>
-				
+
 				<button class="btn-contact">Contacter l'organisateur</button>
 				<button class="btn-join">Participer à cette activité</button>
-			
+
 			</div>
 
 		</div>

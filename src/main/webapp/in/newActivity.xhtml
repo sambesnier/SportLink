@@ -15,9 +15,11 @@
 	<div class="header">
 		<div class="header-container">
 			<a href="../index.xhtml"><img
-				src="#{resource['images/logo.png']}" /></a> <a
-				href="deconnexion.xhtml"><b:button class="loginBtn"
-					value="Se déconnecter"></b:button></a>
+				src="#{resource['images/logo.png']}" /></a>
+			<b:form>
+				<b:commandButton onclick="ajax:logoutController.logout()" class="loginBtn"
+					value="Se déconnecter"></b:commandButton>
+			</b:form>
 		</div>
 	</div>
 
@@ -35,11 +37,11 @@
 				<b:form>
 
 					<b:inputText placeholder="Titre de l'activité" id="activity"
-						value="#{newActivityController.title}" ajax="true"
+						value="#{newActivity.title}" ajax="true"
 						autocomplete="false" update="@(.message)">
 					</b:inputText>
 
-					<b:selectOneMenu value="#{newActivityController.type}"
+					<b:selectOneMenu value="#{newActivity.type}"
 						required="true" label="Sélectionnez le type de votre activité">
 						<f:selectItem itemLabel=" - " itemValue="" />
 						<f:selectItem itemLabel="Foot" itemValue="foot" />
@@ -51,14 +53,14 @@
 					<label>Lieu du rendez vous</label>
 
 					<b:inputText placeholder="Indiquez l'adresse du rendez vous"
-						id="place" value="#{newActivityController.place}" ajax="true"
+						id="place" value="#{newActivity.place}" ajax="true"
 						autocomplete="false" update="@(.message)">
 					</b:inputText>
 
 					<label>Saisissez une date</label>
 
 					<b:dateTimePicker id="rdvDate"
-						value="#{newActivityController.rdvDate}"
+						value="#{newActivity.date}"
 						allow-input-toggle="false" icon-position="right" mode="popup"
 						show-date="true" show-time="true" show-icon="true"
 						use-current="true" />
@@ -66,12 +68,12 @@
 					<label>Saisissez le nombre de participants</label>
 
 					<b:touchSpin id="spinnumber"
-						value="#{newActivityController.number}" min="2" max="50" step="1"
+						value="#{newActivity.max}" min="2" max="50" step="1"
 						placeholder="Nombre de participants minimum">
 					</b:touchSpin>
 
 					<b:commandButton value="Ajouter" class="btn-submit"
-						onclick="ajax:newActivityController.submit()" />
+						onclick="ajax:newActivity.submit()" />
 
 				</b:form>
 			</div>
