@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.cdi.beans.MyContext;
 import com.cdi.model.webservice.User;
 import com.cdi.model.webservice.impl.ServiceService;
+import com.cdi.service.ServiceManager;
 
 @ManagedBean(name = "connexion", eager = true)
 @SessionScoped
@@ -24,9 +25,8 @@ public class ConnexionController {
 	public ConnexionController() {
 	}
 	
-	public void submit() {
-		ServiceService service = new ServiceService();
-		User sessionUser = service.getServicePort().authenticate(mail, password);
+	public void submit() {		
+		Object sessionUser = ServiceManager.getManager().authenticate(mail, password);
 		
 		if (sessionUser != null) {
 			FacesContext facesContext = FacesContext.getCurrentInstance(); 

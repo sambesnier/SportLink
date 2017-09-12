@@ -2,20 +2,27 @@ package com.cdi.bouchon.models;
 
 import java.util.List;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 public class Activity {
 	String title;
 	String place;
-	String date;
+	XMLGregorianCalendar date;
 	List<String> users;
 	String type;
+	int maxPersons;
 	
-	public Activity(String title, String place, String date, List<String> users, String type) {
+	public Activity(String title, String place, XMLGregorianCalendar date, List<String> users, String type) {
 		super();
 		this.title = title;
 		this.place = place;
 		this.date = date;
 		this.users = users;
 		this.type = type;
+	}
+	
+	public Activity() {
+		
 	}
 
 	/**
@@ -49,14 +56,14 @@ public class Activity {
 	/**
 	 * @return the date
 	 */
-	public String getDate() {
+	public XMLGregorianCalendar getDate() {
 		return date;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(String date) {
+	public void setDate(XMLGregorianCalendar date) {
 		this.date = date;
 	}
 
@@ -94,6 +101,20 @@ public class Activity {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the maxPersons
+	 */
+	public int getMaxPersons() {
+		return maxPersons;
+	}
+
+	/**
+	 * @param maxPersons the maxPersons to set
+	 */
+	public void setMaxPersons(int maxPersons) {
+		this.maxPersons = maxPersons;
 	}
 	
 	

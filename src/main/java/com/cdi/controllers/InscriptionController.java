@@ -16,6 +16,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import com.cdi.beans.MyContext;
 import com.cdi.model.webservice.User;
 import com.cdi.model.webservice.impl.ServiceService;
+import com.cdi.service.ServiceManager;
 
 
 @ManagedBean(name = "inscription", eager = true)
@@ -38,39 +39,31 @@ public class InscriptionController {
 	}
 
 	public void submit() {
-
-		User user = new User();
-		user.setPassword(password);
-		user.setMail(mail);
-		user.setGender(sexe);
-		user.setCity(ville);
-		user.setCp(codePostal);
+		
 		try {
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.setTime(date);
 
-			XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-			user.setBirthday(xmlGregCal);		
+			XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);	
+			
+			Object sessionUser = ServiceManager.getManager().register(mail, password, sexe, xmlGregCal, ville, codePostal);
+			
+			if (sessionUser != null) {
+				FacesContext facesContext = FacesContext.getCurrentInstance(); 
+	        	HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+	        	
+	        	session.setAttribute("user", sessionUser);
+	        	
+	        	try {
+					FacesContext.getCurrentInstance().getExternalContext().redirect("in/newActivity.xhtml");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		ServiceService service = new ServiceService();
-		User sessionUser = service.getServicePort().register(user);
-		
-		if (sessionUser != null) {
-			FacesContext facesContext = FacesContext.getCurrentInstance(); 
-        	HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        	
-        	session.setAttribute("user", sessionUser);
-        	
-        	try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("in/newActivity.xhtml");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
