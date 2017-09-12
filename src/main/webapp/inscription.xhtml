@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xhtml>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>SportLink</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto"
+		rel="stylesheet" type="text/css" />
+</h:head>
+
+<body>
+
+	<div class="header">
+		<div class="header-container">
+			<a href="index.xhtml"><img
+				src="#{resource['images/logo.png']}" /></a> <a
+				href="connexion.xhtml"><b:button class="loginBtn"
+					value="Se connecter"></b:button></a>
+		</div>
+	</div>
+
+	<div id="bg"></div>
+
+	<div class="container">
+
+		<div id="inscription">
+
+			<h1 id="title">Let's move togather</h1>
+
+			<div id="form-container">
+
+				<b:form>
+
+					<label>Pseudo</label>
+					<b:inputText placeholder="Nom d'utilisateur" id="username"
+						value="#{inscriptionController.pseudo}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
+
+					<label>Email</label>
+					<b:inputText placeholder="Adresse mail"
+						value="#{inscriptionController.email}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
+
+					<label>Mot de passe</label>
+					<b:inputSecret placeholder="Mot de passe" id="password"
+						value="#{inscriptionController.password}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputSecret>
+					
+					<label>Confirmation</label>
+					<b:inputSecret placeholder="Confrmation de MDP" id="password2"
+						value="#{inscriptionController.password2}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputSecret>
+
+					<b:selectOneMenu value="#{selectOneMenuBean.sexe}" required="true"
+						label="Sexe:">
+						<f:selectItem itemLabel=" - " itemValue="" />
+						<f:selectItem itemLabel="Homme" itemValue="1" />
+						<f:selectItem itemLabel="Femme" itemValue="2" />
+					</b:selectOneMenu>
+
+					<b:dateTimePicker mode="toggle-icon" showWeek="true"
+						value="#{dateBean.cdate}" required="true"
+						label="Date de naissance:" />
+
+					<b:selectOneMenu value="#{selectOneMenuBean.region}"
+						required="true" label="Selectionnez votre région:">
+						<f:selectItem itemLabel=" - " itemValue="" />
+						<f:selectItem itemLabel="Auvergne-Rhône-Alpes" itemValue="1" />
+						<f:selectItem itemLabel="Bourgogne-Franche-Comté" itemValue="2" />
+						<f:selectItem itemLabel="Bretagne" itemValue="3" />
+						<f:selectItem itemLabel="Centre-Val de Loire" itemValue="4" />
+						<f:selectItem itemLabel="Corse" itemValue="5" />
+						<f:selectItem itemLabel="Grand Est" itemValue="6" />
+						<f:selectItem itemLabel="Hauts-de-France" itemValue="7" />
+						<f:selectItem itemLabel="Île-de-France" itemValue="8" />
+						<f:selectItem itemLabel="Normandie" itemValue="9" />
+						<f:selectItem itemLabel="Nouvelle-Aquitaine" itemValue="10" />
+						<f:selectItem itemLabel="Occitanie" itemValue="11" />
+						<f:selectItem itemLabel="Pays de la Loire" itemValue="12" />
+						<f:selectItem itemLabel="Provence-Alpes-Côte d'Azur"
+							itemValue="13" />
+
+					</b:selectOneMenu>
+
+					<b:commandButton value="Inscription"
+						onclick="ajax:inscriptionController.subscribe()"
+						class="btn-signup" />
+					<p>Déjà un compte? <a href="connexion.xhtml" class="btn-signin">Se connecter</a></p>
+				</b:form>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

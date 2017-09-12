@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>SportLink</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto"
+		rel="stylesheet" />
+</h:head>
+<body>
+
+	<div class="header">
+		<div class="header-container">
+			<a href="../index.xhtml"><img
+				src="#{resource['images/logo.png']}" /></a> <a
+				href="../deconnexion.xhtml"><b:button class="loginBtn"
+					value="Se déconnecter"></b:button></a>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div id="activityContainer">
+
+			<h1 class="title">Mini tournoi de Bubble foot</h1>
+
+			<img src="#{resource['images/bubble-foot.png']}"/>	
+			
+			<div id="infos-activity">
+			
+				<label>Où ?</label>	
+				<p>36 Rue de la Cousinerie, 59650 Villeneuve-d'Ascq</p>
+				
+				<label>Quand ?</label>
+				<p>Le 25/09/2017 à 20:00</p>
+				
+				<label>Type</label>
+				<p>Fun</p>
+				
+				<label>Description</label>
+				<p>Le Lorem Ipsum est simplement du faux texte employé 
+				dans la composition et la mise en page avant impression. 
+				Le Lorem Ipsum est le faux texte standard de l'imprimerie 
+				depuis les années 1500, quand un peintre anonyme assembla 
+				ensemble des morceaux de texte pour réaliser un livre 
+				spécimen de polices de texte.</p>
+				
+				<label>Participants</label>
+				<div id="participants-list">
+					<ul>
+						<li>Benoit</li>
+						<li>Clement</li>
+						<li>Samuel</li>
+						<li>Mehdi</li>
+						<li>Cedric</li>
+						<li>Julien</li>
+						<li>Laurent</li>
+						<li>Dido</li>
+						
+					</ul>
+				</div>
+				
+				<button class="btn-contact">Contacter l'organisateur</button>
+				<button class="btn-join">Participer à cette activité</button>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

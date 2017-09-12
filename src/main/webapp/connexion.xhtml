@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title>Connexion</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto"
+		rel="stylesheet" type="text/css" />
+</h:head>
+
+<h:body>
+	<div class="header">
+		<div class="header-container">
+			<a href="index.xhtml"><img src="#{resource['images/logo.png']}" /></a>
+			<a href="connexion.xhtml"><b:button class="loginBtn"
+					value="Se connecter"></b:button></a>
+		</div>
+	</div>
+	<div class="container">
+		<div id="connexion">
+			<h1 id="title">Connectez vous</h1>
+
+			<div id="form-container">
+
+				<b:form>
+
+					<b:inputText placeholder="Username or Email" value="" ajax="true"
+						autocomplete="false" update="">
+						<f:facet name="prepend">
+							<b:icon name="user" />
+						</f:facet>
+					</b:inputText>
+					<b:inputSecret placeholder="Password" value="" ajax="true"
+						autocomplete="false" update="">
+						<f:facet name="prepend">
+							<b:iconAwesome name="key" />
+						</f:facet>
+					</b:inputSecret>
+					<b:commandButton value="Connexion"
+						onclick="ajax:inscriptionController.subscribe()"
+						class="btn-signup" />
+					<p>
+						Pas de compte? <a href="inscription.xhtml" class="btn-signin">S'inscrire</a>
+					</p>
+
+				</b:form>
+			</div>
+		</div>
+	</div>
+
+
+
+</h:body>
+</html>

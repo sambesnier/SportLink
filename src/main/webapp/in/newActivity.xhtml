@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>SportLink</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto"
+		rel="stylesheet" />
+</h:head>
+<body>
+
+	<div class="header">
+		<div class="header-container">
+			<a href="../index.xhtml"><img
+				src="#{resource['images/logo.png']}" /></a> <a
+				href="deconnexion.xhtml"><b:button class="loginBtn"
+					value="Se déconnecter"></b:button></a>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div id="newActivityContainer">
+
+			<h1 class="title">Proposez une activité et rencontrez vos
+				nouveaux amis</h1>
+
+			<div id="form-container">
+
+				<label id="title-form">Créez une activité</label>
+
+				<b:form>
+
+					<b:inputText placeholder="Titre de l'activité" id="activity"
+						value="#{newActivityController.title}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
+
+					<b:selectOneMenu value="#{newActivityController.type}"
+						required="true" label="Sélectionnez le type de votre activité">
+						<f:selectItem itemLabel=" - " itemValue="" />
+						<f:selectItem itemLabel="Foot" itemValue="foot" />
+						<f:selectItem itemLabel="Basket" itemValue="basket" />
+						<f:selectItem itemLabel="Rugby" itemValue="rugby" />
+						<f:selectItem itemLabel="Golf" itemValue="golf" />
+					</b:selectOneMenu>
+
+					<label>Lieu du rendez vous</label>
+
+					<b:inputText placeholder="Indiquez l'adresse du rendez vous"
+						id="place" value="#{newActivityController.place}" ajax="true"
+						autocomplete="false" update="@(.message)">
+					</b:inputText>
+
+					<label>Saisissez une date</label>
+
+					<b:dateTimePicker id="rdvDate"
+						value="#{newActivityController.rdvDate}"
+						allow-input-toggle="false" icon-position="right" mode="popup"
+						show-date="true" show-time="true" show-icon="true"
+						use-current="true" />
+
+					<label>Saisissez le nombre de participants</label>
+
+					<b:touchSpin id="spinnumber"
+						value="#{newActivityController.number}" min="2" max="50" step="1"
+						placeholder="Nombre de participants minimum">
+					</b:touchSpin>
+
+					<b:commandButton value="Ajouter" class="btn-submit"
+						onclick="ajax:newActivityController.submit()" />
+
+				</b:form>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

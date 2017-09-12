@@ -1,0 +1,400 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	
+		background: url("../resources/images/bg.png") no-repeat;
+		background-size: cover;
+		height: 100vh;
+		width: 100%;
+		background-attachment: fixed;
+
+	font-family: 'Roboto', sans-serif;
+	
+	.header {
+		position: fixed;
+		top: 0;
+		background: white;
+		width: 100%;
+		padding: 20px 0;
+		height: 80px;
+		box-shadow: 3px 0 7px rgba(0,0,0,0.4);
+		.header-container {
+			width: 1200px;
+			margin: 0 auto;		
+			.loginBtn {
+				float: right;
+			}
+			img{
+				float: left;
+			}
+			ul{
+				float: right;
+				margin-right: 20px;
+				
+				li{
+				
+					a{
+					    padding-top: 8px;
+	    				padding-bottom: 8px;
+	    				font-weight: bold;
+	    				border-radius: 3px;
+	    				&:hover {
+	    					color: white;
+	    					background: #16a085;
+	    				}
+					}
+				
+				}
+			}
+		}
+	}
+	
+	.container {
+		padding-top: 60px;
+		
+		#homepage {
+			margin-top: 200px;
+		
+			#title {
+				color: #c0392b;
+				font-family: 'Lobster', cursive;
+				font-size: 50px;
+    			text-align: center;
+    			padding: 20px 0;
+			}
+			
+			#chapo {
+				font-size: 38px;
+			    color: white;
+			    text-align: center;
+			    width: 50%;
+			    margin: 0 auto;
+			    padding: 20px 0;
+			}
+			
+			#description {
+				font-size: 18px;
+				color: white;
+				text-align: center;
+				width: 50%;
+				margin: 0 auto;
+				padding: 20px 0;
+			}
+			
+			#cta_home {
+				color: white;
+			    margin: 20px auto;
+			    display: block;
+			    padding: 10px 20px;
+			    background: none;
+			    border-radius: 31px;
+			    border: 1px solid #e74c3c;
+			    width: 200px;
+			    text-align: center;
+			    text-decoration: none;
+			    cursor: pointer;
+			}
+			
+			#cta_home:hover {
+			    background: #e74c3c;
+			}
+		}
+		
+		#inscription {
+			background: white;
+			margin-top: 60px;
+			margin-bottom: 30px;
+			padding: 20px 20px;
+			border-radius: 5px;
+			
+			#title {
+				color: #c0392b;
+				font-family: 'Lobster', cursive;
+				font-size: 50px;
+    			text-align: center;
+    			padding: 20px 0;
+			}
+			
+			.btn-signup {
+				color: white;
+			    border: none;
+			    padding: 10px 20px;
+			    margin: 0 auto;
+			    display: block;
+			    border-radius: 25px;
+			    background: #e74c3c;
+			    margin-top: 25px;
+			    width: 60%;
+			}
+			
+			.btn-signup:hover {
+				background: #c0392b;
+			}
+			
+			.btn-signin {
+				color: #2980b9;
+			    border: none;
+			    font-weight: bold;
+			}
+			
+			p {
+				margin-top: 20px;
+				text-align: center;
+			}
+		}
+		
+		#connexion {
+			background: white;
+			margin-top: 270px;
+			margin-bottom: 30px;
+			padding: 20px 20px;
+			border-radius: 5px;
+			
+			#title {
+				color: #c0392b;
+				font-family: 'Lobster', cursive;
+				font-size: 50px;
+    			text-align: center;
+    			padding: 20px 0;
+			}
+			
+			.btn-signup {
+				color: white;
+			    border: none;
+			    padding: 10px 20px;
+			    margin: 0 auto;
+			    display: block;
+			    border-radius: 25px;
+			    background: #e74c3c;
+			    margin-top: 25px;
+			    width: 60%;
+			}
+			
+			.btn-signup:hover {
+				background: #c0392b;
+			}
+			
+			.btn-signin {
+				color: #2980b9;
+			    border: none;
+			    font-weight: bold;
+			}
+			
+			p {
+				margin-top: 20px;
+				text-align: center;
+			}
+		}
+		
+		#activities {
+			background: white;
+			margin-top: 60px;
+			margin-bottom: 30px;
+			padding: 20px 20px;
+			border-radius: 5px;
+			
+			hr {
+				border-color: #c0392b;
+			    width: 40%;
+			    border-width: 3px;
+			}
+		
+			#title {
+				color: #c0392b;
+			    font-family: 'Lobster', cursive;
+			    font-size: 50px;
+			    text-align: center;
+			    padding: 20px 0;
+			}
+			
+			#description {
+				font-size: 22px;
+			    color: #2c3e50;
+			    text-align: center;
+			    width: 70%;
+			    margin: 0 auto;
+			    padding: 20px 0;
+			}
+			
+			#list-activities {
+				label {
+					color: #c0392b;
+				    width: 33%;
+				    padding: 15px 15px;
+				    font-size: 22px;
+				}
+				
+				a {
+					text-decoration: none;
+					color: #2c3e50;
+				}
+				
+				.act-row {
+					padding: 20px 0;
+					
+					div {
+						width: 33%;
+					    font-size: 18px;
+					    display: inline-block;
+					    padding: 10px 15px;
+					}
+				}
+				
+				.act-row:hover {
+					background-color: #ecf0f1;
+				}
+				
+				.act-date {
+					
+				}
+				
+				.act-title {
+					font-weight: bold;
+				}
+				
+				.act-type {
+					
+				}
+			}
+		}
+		
+	}
+	
+	#newActivityContainer {
+		background: white;
+		margin-top: 100px;
+		padding: 20px 20px;
+		border-radius: 5px;
+		text-align: center;
+		
+			h1 {
+				color: #c0392b;
+				font-family: 'Lobster', cursive;
+				font-size: 40px;
+			}
+	}
+	
+	#activityContainer {
+		background: white;
+		margin-top: 60px;
+		margin-bottom: 30px;
+		padding: 20px 20px;
+		border-radius: 5px;
+		text-align: center;
+		
+			h1 {
+				color: #c0392b;
+				font-family: 'Lobster', cursive;
+			}
+			
+			img {
+				width: 40%;
+				height: auto;
+			}
+			
+			#infos-activity {
+			
+				padding: 20px;
+				
+				label {
+					color: #c0392b;
+					font-family: 'Lobster', cursive;
+					font-size: 22px;
+					margin-top: 10px;
+				}
+				
+				p {
+					color: #2c3e50;
+					font-size: 16px;
+					width: 70%;
+   					margin: 0 auto;
+				}
+				
+				#participants-list {
+					ul {
+						list-style-type: none;
+					    padding: 0;
+					    font-size: 16px;
+					}
+				}
+			}
+			
+			.btn-contact {
+				color: #16a085;
+			    border: 1px solid #16a085;
+			    padding: 10px 20px;
+			    border-radius: 25px;
+			    background: white;
+			    margin-top: 25px;
+			    width: 60%;
+			}
+			
+			.btn-contact:hover {
+				background: #16a085;
+				color: white;
+			}
+			
+			.btn-join {
+				color: white;
+			    border: none;
+			    padding: 10px 20px;
+			    border-radius: 25px;
+			    background: #e74c3c;
+			    margin-top: 25px;
+			    width: 60%;
+			}
+			
+			.btn-join:hover {
+				background: #c0392b;
+			}
+	}
+	
+	#form-container {
+		width: 60%;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		
+			button.btn-submit {
+		    background: #e74c3c;
+		    color: white;
+		    border: none;
+		   	padding: 10px 0;
+		   	border-radius: 30px;
+		   	
+		   	width: 50% !important;
+		   	margin: 0 auto;
+		   	margin-top: 30px;
+		   	display: block;
+			}
+			button.btn-submit:hover {
+				background: #c0392b;
+			}
+			
+			.input-group {
+				margin: 0 auto;
+			}
+			
+			label {				
+			    font-size: 18px;
+			    color: #c0392b;
+			    margin: 0 auto;
+			    margin-top: 20px;
+			    font-family: 'Lobster', cursive;
+			    display: block;
+			    width: 50%;
+			    text-align: center;
+			}
+	}
+	
+	
+	#bg {
+		background: url("../resources/images/bg.png") no-repeat;
+		background-size: cover;
+		height: 100vh;
+		width: 100%;
+		position: absolute;
+		background-attachment: fixed;
+		z-index: -1;
+	}
+}
