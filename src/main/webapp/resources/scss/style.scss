@@ -11,6 +11,12 @@ body {
 
 	font-family: 'Roboto', sans-serif;
 	
+	.message {
+		width: 60%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	
 	.header {
 		position: fixed;
 		top: 0;
@@ -24,6 +30,7 @@ body {
 			margin: 0 auto;		
 			.loginBtn {
 				float: right;
+				border: none;
 			}
 			img{
 				float: left;
@@ -54,12 +61,12 @@ body {
 		padding-top: 60px;
 		
 		#homepage {
-			margin-top: 200px;
+			margin-top: 165px;
 		
 			#title {
 				color: #c0392b;
 				font-family: 'Lobster', cursive;
-				font-size: 50px;
+				font-size: 150px;
     			text-align: center;
     			padding: 20px 0;
 			}
@@ -225,6 +232,27 @@ body {
 				    font-size: 22px;
 				}
 				
+				.no-activity {
+					text-align: center;
+					color: #2c3e50;
+				}
+				
+				.btn-newActivity {
+					color: white;
+				    border: none;
+				    padding: 10px 20px;
+				    border-radius: 25px;
+				    background: #e74c3c;				    
+				    width: 25%;
+				    margin: 0 auto;
+				    margin-top: 25px;
+				    display: block;
+				    
+				    &:hover {
+				    	background: #c0392b;
+				    }
+				}
+				
 				a {
 					text-decoration: none;
 					color: #2c3e50;
@@ -283,6 +311,12 @@ body {
 		border-radius: 5px;
 		text-align: center;
 		
+			.hr {
+				border-color: #c0392b;
+				width: 5%;
+    			border-width: 5px;
+			}
+		
 			h1 {
 				color: #c0392b;
 				font-family: 'Lobster', cursive;
@@ -309,6 +343,8 @@ body {
 					font-size: 16px;
 					width: 70%;
    					margin: 0 auto;
+   					text-align: justify;
+    				text-align-last: center;
 				}
 				
 				#participants-list {
@@ -317,6 +353,39 @@ body {
 					    padding: 0;
 					    font-size: 16px;
 					}
+				}
+				
+				.hr {
+					margin-top: 40px;
+				}
+				
+				textarea {
+					border-radius: 5px;
+				}
+				
+				#commentaires {
+					margin-top: 25px;
+					
+					hr {
+						width: 75%;
+					}
+					
+					#coms {
+						text-align: left;
+						
+						p {
+							color: #2c3e50;
+						    font-size: 18px;
+						    width: 70%;
+						    margin: 0 auto;
+						    text-align-last: left;
+						}
+						
+						.mail {
+							font-size: 16px;
+						}
+					}
+					
 				}
 			}
 			
@@ -327,7 +396,7 @@ body {
 			    border-radius: 25px;
 			    background: white;
 			    margin-top: 25px;
-			    width: 60%;
+			    width: 40%;
 			}
 			
 			.btn-contact:hover {
@@ -342,7 +411,7 @@ body {
 			    border-radius: 25px;
 			    background: #e74c3c;
 			    margin-top: 25px;
-			    width: 60%;
+			    width: 40%;
 			}
 			
 			.btn-join:hover {

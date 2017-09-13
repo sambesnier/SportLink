@@ -15,6 +15,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import com.cdi.beans.MyContext;
 import com.cdi.model.webservice.Activity;
 import com.cdi.model.webservice.impl.ServiceService;
+import com.cdi.service.ServiceManager;
 
 @ManagedBean(name = "newActivity", eager = true)
 @SessionScoped
@@ -27,7 +28,8 @@ public class NewActivityController {
 	String title;
 	String place;
 	String type;
-	int max;
+	int participants;
+	String description;
 
 	public NewActivityController() {
 
@@ -37,32 +39,41 @@ public class NewActivityController {
 		Activity activity = new Activity();
 		activity.setName(title); // String
 		activity.setPlace(place); // String
-		activity.setStatus("Inscriptions en cours"); // String
-		activity.setMin(0);
-		activity.setMax(max);
+		activity.setParticipants(participants);
+		activity.setType(type);
+		activity.setDescription(description);
 
 		try {
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.setTime(date);
 
 			XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-			activity.setStart(xmlGregCal);
-			activity.setEnd(xmlGregCal);
+			activity.setDateGreg(xmlGregCal);
 
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		ServiceService service = new ServiceService();
-		service.getServicePort().createActivity(activity);
+		int id = ServiceManager.getManager().createActivity(activity).getId();
 
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("activity.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("activity.xhtml?id=" + id);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		clear();
 
+	}
+
+	private void clear() {
+		setDate(null);
+		setDescription(null);
+		setParticipants(2);
+		setPlace(null);
+		setTitle(null);
+		setType(null);
 	}
 
 	/**
@@ -121,18 +132,19 @@ public class NewActivityController {
 		this.place = place;
 	}
 
+
 	/**
-	 * @return the max
+	 * @return the participants
 	 */
-	public int getMax() {
-		return max;
+	public int getParticipants() {
+		return participants;
 	}
 
 	/**
-	 * @param max the max to set
+	 * @param participants the participants to set
 	 */
-	public void setMax(int max) {
-		this.max = max;
+	public void setParticipants(int participants) {
+		this.participants = participants;
 	}
 
 	/**
@@ -147,6 +159,20 @@ public class NewActivityController {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<title>SportLink</title>
@@ -16,8 +17,21 @@
 	<div class="header">
 		<div class="header-container">
 			<a href="index.xhtml"><img src="#{resource['images/logo.png']}" /></a>
-			<a href="connexion.xhtml"><b:button class="loginBtn"
-					value="Se connecter"></b:button></a>
+
+			<c:if test="#{empty sessionScope.user}">
+				<a href="connexion.xhtml"><b:button class="loginBtn"
+						value="Se connecter"></b:button></a>
+			</c:if>
+			<c:if test="#{not empty sessionScope.user}">
+				<b:form>
+					<b:commandButton onclick="ajax:logoutController.logoutOut()"
+						class="loginBtn" value="Se déconnecter"></b:commandButton>
+				</b:form>
+				<a href="in/newActivity.xhtml"><b:button class="loginBtn"
+						value="Nouvelle activité"></b:button></a>
+				<a href="activities.xhtml"><b:button class="loginBtn"
+						value="Liste des activités"></b:button></a>
+			</c:if>
 		</div>
 	</div>
 
@@ -34,177 +48,35 @@
 
 			<div id="list-activities">
 
-				<label>Date</label> <label>Titre</label> <label>Type</label>
-					
-				<ui:repeat value="#{activity.items}" var="item">
-					<a href="">
-						<div class="act-row">
+				<c:if test="#{not empty activities.items}">
 
-							<div class="act-date">#{item.date}</div>
+					<label>Date</label>
+					<label>Titre</label>
+					<label>Type</label>
 
-							<div class="act-title">#{item.title}</div>
-							
-							<div class="act-type">#{item.type}</div>
-							
-						</div>
-					</a>
-				</ui:repeat>
+					<ui:repeat value="#{activities.items}" var="item">
+						<a href="in/activity.xhtml?id=#{item.id}">
+							<div class="act-row">
 
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
+								<div class="act-date">
+									<h:outputText value="#{item.date}">
+										<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
+									</h:outputText>
+								</div>
 
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
+								<div class="act-title">#{item.name}</div>
 
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
+								<div class="act-type">#{item.type}</div>
 
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
+							</div>
+						</a>
+					</ui:repeat>
 
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-				<!-- 				<a href=""> -->
-				<!-- 					<div class="act-row"> -->
-
-				<!-- 						<div class="act-date"> -->
-				<!-- 							15/09/2017 à 20:00 -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-title"> -->
-				<!-- 							Mini tournoi de Bubble foot -->
-				<!-- 						</div> -->
-
-				<!-- 						<div class="act-type"> -->
-				<!-- 							Fun -->
-				<!-- 						</div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</a> -->
-
-<!-- 				<a href=""> -->
-<!-- 					<div class="act-row"> -->
-
-<!-- 						<div class="act-date">15/09/2017 à 20:00</div> -->
-
-<!-- 						<div class="act-title">Mini tournoi de Bubble foot</div> -->
-
-<!-- 						<div class="act-type">Fun</div> -->
-
-<!-- 					</div> -->
-<!-- 				</a> -->
+				</c:if>
+				<c:if test="#{empty activities.items}">
+					<h2 class="no-activity">Il n'y a pas encore d'activité, soyez le premier à en créer une</h2>
+					<a href="in/newActivity.xhtml"><button class="btn-newActivity">Créer une activité</button></a>
+				</c:if>
 
 			</div>
 

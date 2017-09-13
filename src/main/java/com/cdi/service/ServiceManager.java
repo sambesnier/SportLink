@@ -1,6 +1,5 @@
 package com.cdi.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -38,53 +37,50 @@ public class ServiceManager {
 		
 	}
 	
-	public Object register(String mail, String password, String sexe, XMLGregorianCalendar birthDate, String ville, int codePostal) {
+	public User register(String mail, String password, String sexe, XMLGregorianCalendar birthDate, String ville, int codePostal) {
+		User user = new User();
+		user.setPassword(password);
+		user.setMail(mail);
+		user.setGender(sexe);
+		user.setCity(ville);
+		user.setBirthday(birthDate);
+		user.setCp(codePostal);
+		
 		if (prod) {
-			User user = new User();
-			user.setPassword(password);
-			user.setMail(mail);
-			user.setGender(sexe);
-			user.setCity(ville);
-			user.setBirthday(birthDate);
-			user.setCp(codePostal);
 			ServiceService service = new ServiceService();
 			return service.getServicePort().register(user);
 		} else {
-			com.cdi.bouchon.models.User user = new com.cdi.bouchon.models.User();
-			user.setPassword(password);
-			user.setMail(mail);
-			user.setSexe(sexe);
-			user.setVille(ville);
-			user.setDateNaissance(birthDate);
-			user.setCodePostal(codePostal);
 			return MockContext.getContext().register(user);
 		}
 	}
 	
-	public Object createActivity(String title, String type, String place, XMLGregorianCalendar date, int maxPersons) {
-		if (prod) {
-			Activity activity = new Activity();
-			
+	public Activity createActivity(Activity activity) {
+		
+		if (prod) {			
 			ServiceService service = new ServiceService();
 			//return service.getServicePort().createActivity(activity);
 			return null;
 		} else {
-			com.cdi.bouchon.models.Activity activity = new com.cdi.bouchon.models.Activity();
-			activity.setTitle(title);
-			activity.setType(type);
-			activity.setPlace(place);
-			activity.setDate(date);
-			activity.setMaxPersons(maxPersons);
+			activity.setId(MockContext.getContext().getActivities().size() + 1);
 			return MockContext.getContext().createActivity(activity);
 		}
 	}
 
-	public List<com.cdi.bouchon.models.Activity> getActivities() {
+	public List<Activity> getActivities() {
 		if (prod) {
 			ServiceService service = new ServiceService();
-			return null;
+			return service.getServicePort().findAllActivity().getItem();
 		} else {
 			return MockContext.getContext().getActivities();
+		}
+	}
+	
+	public Activity getActivityById(int id) {
+		if (prod) {
+			ServiceService service = new ServiceService();
+			return service.getServicePort().readActivity(id);
+		} else {
+			return MockContext.getContext().readActivity(id);
 		}
 	}
 }

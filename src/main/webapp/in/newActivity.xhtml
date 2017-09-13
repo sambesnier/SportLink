@@ -17,9 +17,12 @@
 			<a href="../index.xhtml"><img
 				src="#{resource['images/logo.png']}" /></a>
 			<b:form>
-				<b:commandButton onclick="ajax:logoutController.logout()" class="loginBtn"
-					value="Se déconnecter"></b:commandButton>
+				<b:commandButton onclick="ajax:logoutController.logout()"
+					class="loginBtn" value="Se déconnecter"></b:commandButton>
 			</b:form>
+			<a href="newActivity.xhtml"><b:button class="loginBtn"
+					value="Nouvelle activité"></b:button></a> <a href="../activities.xhtml"><b:button
+					class="loginBtn" value="Liste des activités"></b:button></a>
 		</div>
 	</div>
 
@@ -37,17 +40,17 @@
 				<b:form>
 
 					<b:inputText placeholder="Titre de l'activité" id="activity"
-						value="#{newActivity.title}" ajax="true"
-						autocomplete="false" update="@(.message)">
+						value="#{newActivity.title}" ajax="true" autocomplete="false"
+						update="@(.message)">
 					</b:inputText>
 
-					<b:selectOneMenu value="#{newActivity.type}"
-						required="true" label="Sélectionnez le type de votre activité">
+					<b:selectOneMenu value="#{newActivity.type}" required="true"
+						label="Sélectionnez le type de votre activité">
 						<f:selectItem itemLabel=" - " itemValue="" />
-						<f:selectItem itemLabel="Foot" itemValue="foot" />
-						<f:selectItem itemLabel="Basket" itemValue="basket" />
-						<f:selectItem itemLabel="Rugby" itemValue="rugby" />
-						<f:selectItem itemLabel="Golf" itemValue="golf" />
+						<f:selectItem itemLabel="Foot" itemValue="Foot" />
+						<f:selectItem itemLabel="Basket" itemValue="Basket" />
+						<f:selectItem itemLabel="Rugby" itemValue="Rugby" />
+						<f:selectItem itemLabel="Golf" itemValue="Golf" />
 					</b:selectOneMenu>
 
 					<label>Lieu du rendez vous</label>
@@ -59,18 +62,23 @@
 
 					<label>Saisissez une date</label>
 
-					<b:dateTimePicker id="rdvDate"
-						value="#{newActivity.date}"
+					<b:dateTimePicker id="rdvDate" value="#{newActivity.date}"
 						allow-input-toggle="false" icon-position="right" mode="popup"
 						show-date="true" show-time="true" show-icon="true"
 						use-current="true" />
 
 					<label>Saisissez le nombre de participants</label>
 
-					<b:touchSpin id="spinnumber"
-						value="#{newActivity.max}" min="2" max="50" step="1"
+					<b:touchSpin id="spinnumber" value="#{newActivity.participants}"
+						min="2" max="50" step="1"
 						placeholder="Nombre de participants minimum">
 					</b:touchSpin>
+
+					<label>Description</label>
+
+					<b:inputTextarea placeholder="Donnez des indications supplémentaires sur votre activité."
+						value="#{newActivity.description}" id="description">
+					</b:inputTextarea>
 
 					<b:commandButton value="Ajouter" class="btn-submit"
 						onclick="ajax:newActivity.submit()" />

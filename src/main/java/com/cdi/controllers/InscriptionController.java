@@ -14,6 +14,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.cdi.beans.MyContext;
+import com.cdi.model.webservice.Activity;
 import com.cdi.model.webservice.User;
 import com.cdi.model.webservice.impl.ServiceService;
 import com.cdi.service.ServiceManager;
@@ -46,7 +47,7 @@ public class InscriptionController {
 
 			XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);	
 			
-			Object sessionUser = ServiceManager.getManager().register(mail, password, sexe, xmlGregCal, ville, codePostal);
+			User sessionUser = ServiceManager.getManager().register(mail, password, sexe, xmlGregCal, ville, codePostal);
 			
 			if (sessionUser != null) {
 				FacesContext facesContext = FacesContext.getCurrentInstance(); 
@@ -55,7 +56,7 @@ public class InscriptionController {
 	        	session.setAttribute("user", sessionUser);
 	        	
 	        	try {
-					FacesContext.getCurrentInstance().getExternalContext().redirect("in/newActivity.xhtml");
+					FacesContext.getCurrentInstance().getExternalContext().redirect("activities.xhtml");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -65,6 +66,18 @@ public class InscriptionController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		clear();
+	}
+
+	private void clear() {
+		setCodePostal(0);
+		setMail(null);
+		setDate(null);
+		setPassword(null);
+		setPassword2(null);
+		setSexe(null);
+		setVille(null);
 	}
 
 	/**

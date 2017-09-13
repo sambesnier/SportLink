@@ -2,6 +2,7 @@ package com.cdi.controllers;
 
 import java.io.IOException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -22,6 +23,8 @@ public class ConnexionController {
 	
 	String mail;
 	String password;
+	String error;
+	
 	public ConnexionController() {
 	}
 	
@@ -35,10 +38,13 @@ public class ConnexionController {
         	session.setAttribute("user", sessionUser);
         	
         	try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("in/newActivity.xhtml");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("activities.xhtml");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "Mauvais identifiants");
+            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);			
 		}
 	}
 	
@@ -77,6 +83,20 @@ public class ConnexionController {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the error
+	 */
+	public String getError() {
+		return error;
+	}
+
+	/**
+	 * @param error the error to set
+	 */
+	public void setError(String error) {
+		this.error = error;
 	}
 	
 	

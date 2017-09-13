@@ -13,28 +13,40 @@ import com.cdi.beans.MyContext;
 @ManagedBean
 @ViewScoped
 public class LogoutController {
-	
+
 	@ManagedProperty(value = "#{myContext}")
 	MyContext myContext;
-	
+
 	public LogoutController() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void logout() {
-		
-		
-		FacesContext facesContext = FacesContext.getCurrentInstance(); 
-    	HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-    	session.removeAttribute("user");    	
-    	
-    	try {
+
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		session.removeAttribute("user");
+
+		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("../index.xhtml");
 		} catch (IOException e) {
-			
+
 		}
-		
-		
+
+	}
+
+	public void logoutOut() {
+
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+		session.removeAttribute("user");
+
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		} catch (IOException e) {
+
+		}
+
 	}
 
 	/**
@@ -45,7 +57,8 @@ public class LogoutController {
 	}
 
 	/**
-	 * @param myContext the myContext to set
+	 * @param myContext
+	 *            the myContext to set
 	 */
 	public void setMyContext(MyContext myContext) {
 		this.myContext = myContext;

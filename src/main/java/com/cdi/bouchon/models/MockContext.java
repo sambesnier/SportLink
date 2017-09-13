@@ -1,7 +1,16 @@
 package com.cdi.bouchon.models;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.cdi.model.webservice.Activity;
+import com.cdi.model.webservice.User;
 
 public class MockContext {
 
@@ -14,6 +23,25 @@ public class MockContext {
 	private MockContext() {
 		users = new ArrayList<User>();
 		activities = new ArrayList<Activity>();
+		User user = new User();
+		user.setPassword("1234");
+		user.setMail("sam@gmail.com");
+		user.setGender("Homme");
+		user.setCity("Lille");
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(new Date());
+
+		XMLGregorianCalendar xmlGregCal;
+		try {
+			xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
+			user.setBirthday(xmlGregCal);
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		user.setCp(59000);
+		register(user);
 	}
 	
 	public static MockContext getContext() {
@@ -68,9 +96,18 @@ public class MockContext {
 		this.activities = activities;
 	}
 
-	public Object createActivity(Activity activity) {
+	public Activity createActivity(Activity activity) {
 		activities.add(activity);
 		return activity;
+	}
+
+	public Activity readActivity(int id) {
+		for (int i = 0; i < activities.size(); i++) {
+			if (activities.get(i).getId() == id) {
+				return activities.get(i);
+			}
+		}
+		return null;
 	}
 	
 	

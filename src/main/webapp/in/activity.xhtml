@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
 	<title>SportLink</title>
@@ -12,60 +13,104 @@
 </h:head>
 <body>
 
+	<f:metadata>
+		<f:viewParam name="id" value="#{activity.id}" />
+	</f:metadata>
+
 	<div class="header">
 		<div class="header-container">
 			<a href="../index.xhtml"><img
 				src="#{resource['images/logo.png']}" /></a>
 			<b:form>
-				<b:commandButton onclick="ajax:logoutController.logout()" class="loginBtn"
-					value="Se déconnecter"></b:commandButton>
+				<b:commandButton onclick="ajax:logoutController.logout()"
+					class="loginBtn" value="Se déconnecter"></b:commandButton>
 			</b:form>
+			<a href="newActivity.xhtml"><b:button class="loginBtn"
+					value="Nouvelle activité"></b:button></a> <a href="../activities.xhtml"><b:button
+					class="loginBtn" value="Liste des activités"></b:button></a>
 		</div>
 	</div>
+
+
 
 	<div class="container">
 
 		<div id="activityContainer">
 
-			<h1 class="title">Mini tournoi de Bubble foot</h1>
+			<h1 class="title">#{activity.act.name}</h1>
+
+			<hr class="hr" />
 
 			<img src="#{resource['images/bubble-foot.png']}" />
 
 			<div id="infos-activity">
 
 				<label>Où ?</label>
-				<p>36 Rue de la Cousinerie, 59650 Villeneuve-d'Ascq</p>
+				<p>#{activity.act.place}</p>
 
 				<label>Quand ?</label>
-				<p>Le 25/09/2017 à 20:00</p>
+				<p>
+					Le
+					<h:outputText value="#{activity.act.date}">
+						<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
+					</h:outputText>
+				</p>
 
 				<label>Type</label>
-				<p>Fun</p>
+				<p>#{activity.act.type}</p>
 
 				<label>Description</label>
-				<p>Le Lorem Ipsum est simplement du faux texte employé dans la
-					composition et la mise en page avant impression. Le Lorem Ipsum est
-					le faux texte standard de l'imprimerie depuis les années 1500,
-					quand un peintre anonyme assembla ensemble des morceaux de texte
-					pour réaliser un livre spécimen de polices de texte.</p>
+				<p>#{activity.act.description}</p>
 
 				<label>Participants</label>
 				<div id="participants-list">
 					<ul>
-						<li>Benoit</li>
-						<li>Clement</li>
-						<li>Samuel</li>
-						<li>Mehdi</li>
-						<li>Cedric</li>
-						<li>Julien</li>
-						<li>Laurent</li>
-						<li>Dido</li>
-
+						<!-- 						<li>Benoit</li> -->
+						<!-- 						<li>Clement</li> -->
+						<!-- 						<li>Samuel</li> -->
+						<!-- 						<li>Mehdi</li> -->
+						<!-- 						<li>Cedric</li> -->
+						<!-- 						<li>Julien</li> -->
+						<!-- 						<li>Laurent</li> -->
+						<!-- 						<li>Dido</li> -->
 					</ul>
 				</div>
 
-				<button class="btn-contact">Contacter l'organisateur</button>
 				<button class="btn-join">Participer à cette activité</button>
+
+				<hr class="hr" />
+
+				<h:inputHidden value="#{param['id']}" />
+
+				<div id="commentaires">
+
+					<div id="coms">
+
+						<ui:repeat value="#{activity.act.commentaires}" var="item">
+							<p>#{item.text}</p>
+							<p class="mail">
+								#{item.name} le
+								<h:outputText value="#{item.date}">
+									<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
+								</h:outputText>
+							</p>
+							<hr />
+						</ui:repeat>
+
+
+					</div>
+
+					<b:form>
+
+						<label> Votre commentaire</label>
+						<br />
+						<h:inputTextarea rows="7" cols="100" value="#{activity.comtext}"></h:inputTextarea>
+						<b:commandButton value="Envoyer" class="btn-contact"
+							onclick="ajax:activity.submitComment()" />
+
+
+					</b:form>
+				</div>
 
 			</div>
 

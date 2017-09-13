@@ -26,17 +26,26 @@
 
 			<div id="form-container">
 
-				<b:form>
+				<b:form id="loginForm">
 
 					<b:inputText placeholder="Email" value="#{connexion.mail}" ajax="true"
 						autocomplete="false">
 					</b:inputText>
 					<b:inputSecret placeholder="Mot de passe" value="#{connexion.password}" ajax="true"
-						autocomplete="false">
+						autocomplete="false" id="password">
 					</b:inputSecret>
+					
+					
+          			<b:message for="password" />
+        			
+					
 					<b:commandButton value="Connexion"
 						onclick="ajax:connexion.submit()"
-						class="btn-signup" />
+						class="btn-signup"
+						update="@form" />
+						
+					<h:outputText value="#{connexion.error}" />
+						
 					<p>
 						Pas de compte? <a href="inscription.xhtml" class="btn-signin">S'inscrire</a>
 					</p>
