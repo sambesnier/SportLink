@@ -103,7 +103,7 @@ public class MockContext {
 
 	public Activity readActivity(int id) {
 		for (int i = 0; i < activities.size(); i++) {
-			if (activities.get(i).getId() == id) {
+			if (activities.get(i).getIdActivity() == id) {
 				return activities.get(i);
 			}
 		}

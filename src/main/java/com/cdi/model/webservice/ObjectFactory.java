@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _Activity_QNAME = new QName("http://webService.model.cdi.com/", "activity");
     private final static QName _User_QNAME = new QName("http://webService.model.cdi.com/", "user");
+    private final static QName _Participant_QNAME = new QName("http://webService.model.cdi.com/", "participant");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.cdi.model.webservice
@@ -48,6 +49,22 @@ public class ObjectFactory {
      */
     public User createUser() {
         return new User();
+    }
+
+    /**
+     * Create an instance of {@link Participant }
+     * 
+     */
+    public Participant createParticipant() {
+        return new Participant();
+    }
+
+    /**
+     * Create an instance of {@link ParticipantArray }
+     * 
+     */
+    public ParticipantArray createParticipantArray() {
+        return new ParticipantArray();
     }
 
     /**
@@ -82,6 +99,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://webService.model.cdi.com/", name = "user")
     public JAXBElement<User> createUser(User value) {
         return new JAXBElement<User>(_User_QNAME, User.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Participant }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://webService.model.cdi.com/", name = "participant")
+    public JAXBElement<Participant> createParticipant(Participant value) {
+        return new JAXBElement<Participant>(_Participant_QNAME, Participant.class, null, value);
     }
 
 }

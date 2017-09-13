@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.cdi.model.webservice.Activity;
 import com.cdi.service.ServiceManager;
 
 @ManagedBean(name = "activities", eager = true)
-@SessionScoped
+@ViewScoped
 public class ActivityList {
 
 	List<Activity> items;

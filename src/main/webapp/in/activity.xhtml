@@ -52,7 +52,7 @@
 				<p>
 					Le
 					<h:outputText value="#{activity.act.date}">
-						<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
+						<!-- 						<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" /> -->
 					</h:outputText>
 				</p>
 
@@ -60,23 +60,20 @@
 				<p>#{activity.act.type}</p>
 
 				<label>Description</label>
-				<p>#{activity.act.description}</p>
+				<p>#{activity.act.commentaire}</p>
 
 				<label>Participants</label>
 				<div id="participants-list">
 					<ul>
-						<!-- 						<li>Benoit</li> -->
-						<!-- 						<li>Clement</li> -->
-						<!-- 						<li>Samuel</li> -->
-						<!-- 						<li>Mehdi</li> -->
-						<!-- 						<li>Cedric</li> -->
-						<!-- 						<li>Julien</li> -->
-						<!-- 						<li>Laurent</li> -->
-						<!-- 						<li>Dido</li> -->
+						<ui:repeat value="#{activity.participants}" var="item">
+							<li>#{item.mail}</li>
+						</ui:repeat>
 					</ul>
 				</div>
 
-				<button class="btn-join">Participer à cette activité</button>
+				<b:form>
+					<b:commandButton onclick="ajax:activity.join()" class="btn-join">Participer à cette activité</b:commandButton>
+				</b:form>
 
 				<hr class="hr" />
 
@@ -84,21 +81,7 @@
 
 				<div id="commentaires">
 
-					<div id="coms">
-
-						<ui:repeat value="#{activity.act.commentaires}" var="item">
-							<p>#{item.text}</p>
-							<p class="mail">
-								#{item.name} le
-								<h:outputText value="#{item.date}">
-									<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
-								</h:outputText>
-							</p>
-							<hr />
-						</ui:repeat>
-
-
-					</div>
+					<div id="coms"></div>
 
 					<b:form>
 

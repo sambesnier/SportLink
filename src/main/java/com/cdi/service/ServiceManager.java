@@ -6,6 +6,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.cdi.bouchon.models.MockContext;
 import com.cdi.model.webservice.Activity;
+import com.cdi.model.webservice.Participant;
 import com.cdi.model.webservice.User;
 import com.cdi.model.webservice.impl.ServiceService;
 
@@ -16,7 +17,7 @@ public class ServiceManager {
 	private boolean prod;
 	
 	private ServiceManager() {
-		prod = false;
+		prod = true;
 	}
 	
 	public static ServiceManager getManager() {
@@ -58,10 +59,9 @@ public class ServiceManager {
 		
 		if (prod) {			
 			ServiceService service = new ServiceService();
-			//return service.getServicePort().createActivity(activity);
-			return null;
+			return service.getServicePort().addActivity(activity);
 		} else {
-			activity.setId(MockContext.getContext().getActivities().size() + 1);
+			activity.setIdActivity(MockContext.getContext().getActivities().size() + 1);
 			return MockContext.getContext().createActivity(activity);
 		}
 	}
@@ -82,5 +82,25 @@ public class ServiceManager {
 		} else {
 			return MockContext.getContext().readActivity(id);
 		}
+	}
+	
+	public void addParticipant(int idUser, int idActivity) {
+		Participant p = new Participant();
+		p.setIdActivity(idActivity);
+		p.setIdUser(idUser);
+		
+		ServiceService service = new ServiceService();
+		service.getServicePort().addParticipant(p);
+	}
+	
+	public List<User> getParticipantsByActivity(Activity activity) {
+		
+		ServiceService service = new ServiceService();
+		return service.getServicePort().getParticipant(activity.getIdActivity()).getItem();
+	}
+
+	public User getUserById(int idUser) {
+		ServiceService service = new ServiceService();
+		return service.getServicePort().readUser(idUser);
 	}
 }

@@ -8,12 +8,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.cdi.beans.MyContext;
 import com.cdi.model.webservice.Activity;
+import com.cdi.model.webservice.User;
 import com.cdi.model.webservice.impl.ServiceService;
 import com.cdi.service.ServiceManager;
 
@@ -28,7 +30,7 @@ public class NewActivityController {
 	String title;
 	String place;
 	String type;
-	int participants;
+	int min;
 	String description;
 
 	public NewActivityController() {
@@ -39,23 +41,30 @@ public class NewActivityController {
 		Activity activity = new Activity();
 		activity.setName(title); // String
 		activity.setPlace(place); // String
-		activity.setParticipants(participants);
+		activity.setMin(min);
 		activity.setType(type);
-		activity.setDescription(description);
+		activity.setCommentaire(description);
+		
+		FacesContext facesContext = FacesContext.getCurrentInstance(); 
+    	HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+    	
+    	User user = (User)session.getAttribute("user");
+    	
+    	activity.setUserId(user.getIdUser());
 
 		try {
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.setTime(date);
 
 			XMLGregorianCalendar xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-			activity.setDateGreg(xmlGregCal);
+			activity.setDate(xmlGregCal);
 
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		int id = ServiceManager.getManager().createActivity(activity).getId();
+		int id = ServiceManager.getManager().createActivity(activity).getIdActivity();
 
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("activity.xhtml?id=" + id);
@@ -70,7 +79,7 @@ public class NewActivityController {
 	private void clear() {
 		setDate(null);
 		setDescription(null);
-		setParticipants(2);
+		setMin(2);
 		setPlace(null);
 		setTitle(null);
 		setType(null);
@@ -132,19 +141,20 @@ public class NewActivityController {
 		this.place = place;
 	}
 
+	
 
 	/**
-	 * @return the participants
+	 * @return the min
 	 */
-	public int getParticipants() {
-		return participants;
+	public int getMin() {
+		return min;
 	}
 
 	/**
-	 * @param participants the participants to set
+	 * @param min the min to set
 	 */
-	public void setParticipants(int participants) {
-		this.participants = participants;
+	public void setMin(int min) {
+		this.min = min;
 	}
 
 	/**

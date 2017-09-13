@@ -55,12 +55,12 @@
 					<label>Type</label>
 
 					<ui:repeat value="#{activities.items}" var="item">
-						<a href="in/activity.xhtml?id=#{item.id}">
+						<a href="in/activity.xhtml?id=#{item.idActivity}">
 							<div class="act-row">
 
 								<div class="act-date">
 									<h:outputText value="#{item.date}">
-										<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" />
+<!-- 										<f:convertDateTime pattern="dd/MM/yyyy à HH:mm" /> -->
 									</h:outputText>
 								</div>
 
